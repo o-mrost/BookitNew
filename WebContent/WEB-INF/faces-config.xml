@@ -16,6 +16,11 @@
       <default-locale>de</default-locale>
       <supported-locale>en</supported-locale>
     </locale-config>
+    
+    <resource-bundle>
+  		<base-name>bookit.messages</base-name>
+  		<var>res</var>
+  	</resource-bundle>
      
   </application>
 

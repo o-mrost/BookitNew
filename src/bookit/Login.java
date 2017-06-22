@@ -1,25 +1,13 @@
 package bookit;
 
-import java.util.ArrayList;
-import java.util.Date;
 
+import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.html.HtmlSelectOneMenu;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.model.SelectItem;
+import java.util.Locale;
 
 @ManagedBean(name = "lb")
 @RequestScoped
@@ -32,7 +20,7 @@ public class Login {
 
 	/*---------------------------------------------------------------------------------*/
 
-	//constructur login
+	//constructor login
 	public Login() {
 		System.out.println("MyBean.<init>...");
 		System.out.println("User logged in: " + userLoggedIn);
@@ -75,7 +63,7 @@ public class Login {
 	/*---------------------------------------------------------------------------------*/
 
 	//define what happens when login button gets clicked
-	public String actLogin() {
+	public String actLogin(ActionEvent ae) {
 		String sOutcome = null;
 		System.out.println("actLogin()...");
 
@@ -86,13 +74,19 @@ public class Login {
 		{
 			sOutcome = "user";
 			userLoggedIn = true;
+			adminLoggedIn = false;
 			System.out.println("USER EINGELOGGT: " + userLoggedIn);
+			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
 		} 
+		
 		else if(username.equalsIgnoreCase("admin")&& passwort.equals("admin"))
+		
 		{
 			sOutcome = "admin";
-			adminLoggedIn=true;
+			adminLoggedIn = true;
+			userLoggedIn = false;
 			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
+			System.out.println("USER EINGELOGGT: " + userLoggedIn);
 		}
 		else
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Fehler",
@@ -107,5 +101,15 @@ public class Login {
 	public void aclLogout(ActionEvent ae) {
 		userLoggedIn = false;
 		adminLoggedIn = false;
+	}
+	
+	public void languageDE(ActionEvent ae) {
+		System.out.println("deutsch");
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);
+	}
+	
+	public void languageEN(ActionEvent ae) {
+		System.out.println("englisch");
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.ENGLISH);
 	}
 }

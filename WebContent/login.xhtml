@@ -27,28 +27,20 @@
 
 			<!-- ================= Login page ================= -->
 
-			<h:panelGroup rendered="#{!lb.userLoggedIn}">
+			<h:panelGroup rendered="#{!lb.anybodyLoggedIn}">
 
 				<h:panelGrid columns="2"
 					style="border: solid #336699 5px; background-color: #f0f0f0">
 						
-					Kennung
-					<h:inputText titel="Kennung" required="true" value="#{lb.kennung}">
+					#{res.keyHeader}
+					<h:inputText titel="Kennung" required="true" value="#{lb.username}">
 					</h:inputText>
 					
-					Passwort
+					#{res.keyHeaderPass}
 					<h:inputSecret titel="Passwort" value="#{lb.pw}" required="true"
 						requiredMessage="Passwort fehlt!" size="40">
 						<f:validateLength minimum="4" />
 					</h:inputSecret>
-
-					<!-- 	<h:outputText value="Anmelden als: " /> -->
-
-					<!-- 		<h:selectOneMenu onchange="form.submit()" -->
-					<!-- 			value="#{lb.userLoggedIn }"> -->
-					<!-- 			<f:selectItem itemLabel="user/user" itemValue="user/user" /> -->
-					<!-- 			<f:selectItem itemLabel="admin/admin" itemValue="admin/admin" /> -->
-					<!-- 		</h:selectOneMenu> -->
 
 					<f:facet name="footer">
 						<h:commandButton value="Login" actionListener="#{lb.actLogin}" />
@@ -59,11 +51,12 @@
 
 			<!-- =================  Logout und Kennung ================= -->
 
-			<h:panelGrid columns="1" rendered="#{lb.userLoggedIn}"
-				style="float: right;">
+			<h:panelGrid columns="1" rendered="#{lb.anybodyLoggedIn}">
 				
-				Angemeldet als <strong>#{login.kennung}</strong>
-				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}"></h:commandButton>
+				Angemeldet als <strong>#{lb.username}</strong>
+				<p />
+
+				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}" />
 
 			</h:panelGrid>
 

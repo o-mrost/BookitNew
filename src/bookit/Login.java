@@ -1,5 +1,7 @@
 package bookit;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -48,7 +50,6 @@ public class Login {
 		this.username = username;
 	}
 
-
 	public void setPw(String s) {
 		password = s;
 	}
@@ -80,7 +81,12 @@ public class Login {
 		password = password.trim();
 
 		if (username.equalsIgnoreCase("user") && password.equals("user")) {
+			
+			// TODO database query for password for the user 
+			
 			sOutcome = "user";
+			password = cryptpw(null, password);
+			System.out.println("verschlüsseltes passwort: " + password);
 			userLoggedIn = true;
 			adminLoggedIn = false;
 			System.out.println("USER EINGELOGGT: " + userLoggedIn);
@@ -92,6 +98,8 @@ public class Login {
 
 		{
 			sOutcome = "admin";
+			password = cryptpw(null, password);
+			System.out.println("verschlüsseltes passwort" + password);
 			adminLoggedIn = true;
 			userLoggedIn = false;
 			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
@@ -104,6 +112,31 @@ public class Login {
 		System.out.println("Username: " + username);
 
 		return sOutcome;
+	}
+
+	/* PASSWORTVERSCHLÜSSELUNG */
+
+	public String cryptpw(String user, String pw) {
+
+		String in = user + pw;
+		String out = in;
+
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA");
+			byte[] bHash = md.digest(in.getBytes()); // oder getBytes( "UTF-8" )
+														// ?
+			StringBuffer sb = new StringBuffer();
+
+			for (int i = 0; i < bHash.length; i++) {
+				sb.append(Integer.toHexString(0xF0 & bHash[i]).charAt(0));
+				sb.append(Integer.toHexString(0x0F & bHash[i]));
+			}
+			out = sb.toString();
+		} catch (NoSuchAlgorithmException ex) {
+			ex.printStackTrace();
+		}
+
+		return out;
 	}
 
 	/*---------------------------------------------------------------------------------*/

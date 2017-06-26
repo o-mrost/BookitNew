@@ -140,8 +140,8 @@
 	<p />
 	the user sees
 	<p />
-	<p />
-	<p />
+			<p />
+			<p />
 			<!-- ================= Login page ================= -->
 
 			<h:panelGroup rendered="#{!lb.anybodyLoggedIn}">
@@ -171,6 +171,9 @@
 			<h:panelGrid columns="1" rendered="#{lb.anybodyLoggedIn}">
 				
 				Angemeldet als <strong>#{lb.username}</strong>
+
+				<p />
+				Hello, #{lb.name}
 				<p />
 
 				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}" />

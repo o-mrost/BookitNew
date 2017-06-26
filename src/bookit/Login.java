@@ -1,7 +1,14 @@
 package bookit;
 
+import static java.lang.System.out;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,11 +21,19 @@ import java.util.Locale;
 @RequestScoped
 public class Login {
 
+	private Util util = new Util();
+	private Connection con = null;
+	private Statement stm = null;
+	private ResultSet rs = null;
+
 	private String username = "";
 	private String password = "";
 	private boolean userLoggedIn = false;
 	private boolean adminLoggedIn = false;
 	private boolean anybodyLoggedIn = false;
+	private String name = "";
+	private String sqlUsername = "";
+	private String sqlPassword = "";
 
 	/*---------------------------------------------------------------------------------*/
 
@@ -33,6 +48,30 @@ public class Login {
 	/*---------------------------------------------------------------------------------*/
 
 	// getter and setters for input and output fields
+
+	public String getSqlUsername() {
+		return sqlUsername;
+	}
+
+	public void setSqlUsername(String sqlUsername) {
+		this.sqlUsername = sqlUsername;
+	}
+
+	public String getSqlPassword() {
+		return sqlPassword;
+	}
+
+	public void setSqlPassword(String sqlPassword) {
+		this.sqlPassword = sqlPassword;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public boolean isAnybodyLoggedIn() {
 		return anybodyLoggedIn;
@@ -73,20 +112,62 @@ public class Login {
 	/*---------------------------------------------------------------------------------*/
 
 	// define what happens when login button gets clicked
+
 	public String actLogin(ActionEvent ae) {
+
 		String sOutcome = null;
 		System.out.println("actLogin()...");
 
 		username = username.trim();
 		password = password.trim();
 
-		if (username.equalsIgnoreCase("user") && password.equals("user")) {
-			
-			// TODO database query for password for the user 
-			
+		if (util != null)
+			con = util.getCon();
+		if (con != null) {
+			try {
+
+				String select = "SELECT Customer_Lastname, Customer_Firstname,"
+						+ " Customer_Login, Customer_Passwort FROM customer WHERE customer_login = ?";
+
+				PreparedStatement ps = con.prepareStatement(select);
+
+				ps.setString(1, username);
+
+				System.out.println("prepared statement: " + ps.toString());
+
+				rs = ps.executeQuery();
+
+				if (rs.first())
+					showData();
+
+			} catch (Exception ex) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "SQLException", ex.getLocalizedMessage()));
+				out.println("Error: " + ex);
+				ex.printStackTrace();
+			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Exception", "Keine Verbindung zur Datenbank (Treiber nicht gefunden?)"));
+			out.println("Keine Verbingung zur Datenbank");
+		}
+
+		password = util.cryptpw(null, password);
+
+		System.out.println("++++++++++++++++++++++++++++++++");
+		System.out.println("Username: " + username);
+		System.out.println("Password: " + password);
+		System.out.println("++++++++++++++++++++++++++++++++");
+		System.out.println("sqlusername: " + sqlUsername + ", sql password: " + sqlPassword);
+		System.out.println("++++++++++++++++++++++++++++++++");
+
+		if (username.equalsIgnoreCase(sqlUsername) && password.equals(sqlPassword)) {
+
+			// TODO database query for password for the user
+
 			sOutcome = "user";
-			password = cryptpw(null, password);
-			System.out.println("verschlüsseltes passwort: " + password);
+
+			// System.out.println("verschlüsseltes passwort: " + password);
 			userLoggedIn = true;
 			adminLoggedIn = false;
 			System.out.println("USER EINGELOGGT: " + userLoggedIn);
@@ -98,8 +179,6 @@ public class Login {
 
 		{
 			sOutcome = "admin";
-			password = cryptpw(null, password);
-			System.out.println("verschlüsseltes passwort" + password);
 			adminLoggedIn = true;
 			userLoggedIn = false;
 			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
@@ -109,36 +188,19 @@ public class Login {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Fehler",
 					"Kennung oder PW falsch(user/user oder admin/admin)"));
 
-		System.out.println("Username: " + username);
-
 		return sOutcome;
 	}
 
-	/* PASSWORTVERSCHLÜSSELUNG */
+	private void showData() throws SQLException {
 
-	public String cryptpw(String user, String pw) {
+		setName(rs.getString("customer_firstname") + " " + rs.getString("customer_lastname"));
+		setSqlPassword(rs.getString("customer_passwort"));
+		setSqlUsername(rs.getString("customer_login"));
 
-		String in = user + pw;
-		String out = in;
+		System.out.println("logged as: " + name + ", pass: " + sqlPassword + ", name: " + sqlUsername);
 
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA");
-			byte[] bHash = md.digest(in.getBytes()); // oder getBytes( "UTF-8" )
-														// ?
-			StringBuffer sb = new StringBuffer();
-
-			for (int i = 0; i < bHash.length; i++) {
-				sb.append(Integer.toHexString(0xF0 & bHash[i]).charAt(0));
-				sb.append(Integer.toHexString(0x0F & bHash[i]));
-			}
-			out = sb.toString();
-		} catch (NoSuchAlgorithmException ex) {
-			ex.printStackTrace();
-		}
-
-		return out;
 	}
-
+	
 	/*---------------------------------------------------------------------------------*/
 
 	// listen to button and change boolean if clicked

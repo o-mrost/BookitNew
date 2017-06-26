@@ -123,19 +123,11 @@ public class ScheduleView implements Serializable {
 	public void setId_booking(int id_booking) {
 		this.id_booking = id_booking;
 	}
-	
-	public Date getInitialDate() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(calendar.get(Calendar.YEAR), Calendar.FEBRUARY, calendar.get(Calendar.DATE), 0, 0, 0);
-
-		return calendar.getTime();
-	}
 
 	@PostConstruct
 	public void init() {
 		eventModel = new DefaultScheduleModel();
 		connectToDb();
-
 	}
 
 	private void connectToDb() {
@@ -209,25 +201,8 @@ public class ScheduleView implements Serializable {
 		setComment(rs.getString("comments"));
 		setTime_from(rs.getTimestamp("timefrom"));
 		
-		// TODO convert time_to and time_from
-		
-		System.out.println("time to: " + rs.getTimestamp("timeto"));
-		System.out.println("time to: " + rs.getTimestamp("timefrom"));
-		System.out.println("+++++++++");
-		
 		eventModel.addEvent(new DefaultScheduleEvent(comment, time_from, time_to));
 
-	}
-	
-	private Date convertTime() {
-		
-		// move later to getter and setter method 
-		Calendar t = Calendar.getInstance();
-		
-		t.set(Calendar.AM_PM, Calendar.PM);
-		t.set(Calendar.HOUR, 6);
-
-		return t.getTime();
 	}
 	
 	public void insert(ActionEvent actionEvent) throws ParseException {

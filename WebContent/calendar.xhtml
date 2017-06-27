@@ -17,6 +17,11 @@
 		<h:panelGrid columnClasses="value">
 
 			<h3 style="margin-top: 0"> Book your appointment </h3>
+			
+			<h:commandButton value="Connect"
+				actionListener="#{scheduleView.connect}" />
+				
+				
 
 			<p:schedule id="schedule" value="#{scheduleView.eventModel}"
 				widgetVar="myschedule" timeZone="GMT+2">

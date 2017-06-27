@@ -20,24 +20,34 @@
 		<ui:define name="title">Login</ui:define>
 
 		<ui:define name="content">
-		
-		
-		new 
-			<p />
-		login 
-			<p />
-		page
-
+	
 			<!-- ========================== Login =============================== -->
-
-
-			
-
-
-
 			<h:panelGroup rendered="#{!mb.loggedIn}">
+
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+					</f:facet>
+				</p:menubar>
+
+
 				<h:panelGrid columns="2"
-					style="border: solid #336699 5px; background-color: #f0f0f0">
+					style="border: solid #336699 1px; background-color: #f0f0f0">
 					<f:facet name="footer">
 						<h:commandButton value="Login" action="#{mb.actLogin}" />
 					</f:facet>
@@ -58,12 +68,12 @@
 			</h:panelGroup>
 
 			<!-- ====================== Logout und Kennung ======================== -->
-			<h:panelGrid columns="1" rendered="#{mb.loggedIn}"
-				style="float: right;">
+			<h:panelGrid columns="1" rendered="#{mb.loggedIn}">
+				
+				
  				Angemeldet als <strong>#{mb.kennung}</strong>
 				<h:commandButton value="Logout" actionListener="#{mb.aclLogout}" />
 			</h:panelGrid>
-
 
 		</ui:define>
 	</ui:composition>

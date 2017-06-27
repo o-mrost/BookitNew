@@ -76,6 +76,7 @@ public class Mb {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Fehler",
 					"Kennung oder PW falsch (user/user oder admin/admin)"));
 
+		System.out.println("angemeldet als: " + sOutcome);
 		return sOutcome;
 	}
 

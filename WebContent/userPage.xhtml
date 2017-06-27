@@ -22,6 +22,9 @@
 
 		<ui:define name="content">
 
+
+			<!--  ===================================Login menu user===============================   -->
+
 			<h:form rendered="#{mb.loggedIn}">
 				<p:growl id="messages" />
 
@@ -37,7 +40,7 @@
 
 					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
 						<p:menuitem value="Mein Account" url="#" />
-						<p:menuitem value="Aktuelle Termine" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="calendar.xhtml" />
 					</p:submenu>
 
 					<p:submenu label="Kontakt" icon="ui-icon-help">
@@ -64,12 +67,9 @@
 				<p>
 					<h:commandButton value="Zurück" action="loginPage.xhtml" />
 				</p>
-				
-
 			</h:form>
 
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 </html>

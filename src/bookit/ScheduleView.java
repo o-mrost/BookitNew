@@ -123,19 +123,11 @@ public class ScheduleView implements Serializable {
 	public void setId_booking(int id_booking) {
 		this.id_booking = id_booking;
 	}
-	
-	public Date getInitialDate() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(calendar.get(Calendar.YEAR), Calendar.FEBRUARY, calendar.get(Calendar.DATE), 0, 0, 0);
-
-		return calendar.getTime();
-	}
 
 	@PostConstruct
 	public void init() {
 		eventModel = new DefaultScheduleModel();
 		connectToDb();
-
 	}
 
 	private void connectToDb() {
@@ -205,10 +197,10 @@ public class ScheduleView implements Serializable {
 		setId_booking(rs.getInt("booking"));
 		setCompanyName(rs.getString("compname"));
 		setCustomerName(rs.getString("custname"));
-		setTime_to(rs.getDate("timeto"));
+		setTime_to(rs.getTimestamp("timeto"));
 		setComment(rs.getString("comments"));
-		setTime_from(rs.getDate("timefrom"));
-
+		setTime_from(rs.getTimestamp("timefrom"));
+		
 		eventModel.addEvent(new DefaultScheduleEvent(comment, time_from, time_to));
 
 	}

@@ -5,7 +5,6 @@ public class TimeConvert {
 	public String convertTime(String primeFacesDate) {
 
 		String convertedDate;
-
 		int wordLength = primeFacesDate.length();
 
 		String year = primeFacesDate.substring(wordLength - 4, wordLength);

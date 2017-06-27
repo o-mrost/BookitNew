@@ -4,45 +4,47 @@
 
 <!-- ===========================================================================
 masterLayout.xhtml - Dise Seite ist eine Facelets-Masterseite für ein oder 
-                     mehrere Clientseiten (client.xhtml). Die includierten 
+                     mehrere Clientseiten (login.xhtml). Die includierten 
                      header und footer Seiten könnten alternativ auch direkt
                      im Master integriert werden                     
 ============================================================================ -->
-                     
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>  
-  <h:outputStylesheet library="css" name="myCss.css"/>
-  <title><ui:insert name="title">Default title</ui:insert></title> 
-  <meta charset="utf-8"/>    
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bookit.css" />
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<meta charset="utf-8" />
 </h:head>
 
-<h:body><h:form>
+<h:body>
+	<h:form>
 
-<!-- CTRL+SHIFT+hotkey zeigt debug info an, sofern 
+		<!-- CTRL+SHIFT+hotkey zeigt debug info an, sofern 
      javax.faces.FACELETS_DEVELOPMENT auf true gesetzt ist (der von Eclipse 
      angezeigte EL Syntax error scheint ein Eclipse bug zu sein) -->
-<ui:debug hotkey="x" 
-          rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+		<ui:debug hotkey="x"
+			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 
-<div id="header">
-    <ui:insert name="header">
-      <ui:include src="header.xhtml"/>
-    </ui:insert>
-</div>
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="header.xhtml" />
+			</ui:insert>
+		</div>
 
-<div id="content">
-  <ui:insert name="content"/>
-</div>
+		<div id="content">
+			<ui:insert name="content" />
+		</div>
 
-<div id="footer">
-  <ui:insert name="footer">
-    <ui:include src="footer.xhtml"/>
-  </ui:insert>
-</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="footer.xhtml" />
+			</ui:insert>
+		</div>
 
-</h:form></h:body>
+	</h:form>
+</h:body>
 
 </html>

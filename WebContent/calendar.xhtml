@@ -16,10 +16,7 @@
 
 		<h:panelGrid columnClasses="value">
 
-			<h3 style="margin-top: 0">Calendar</h3>
-
-			<h:commandButton value="Connect"
-				actionListener="#{scheduleView.connect}" />
+			<h3 style="margin-top: 0"> Book your appointment </h3>
 
 			<p:schedule id="schedule" value="#{scheduleView.eventModel}"
 				widgetVar="myschedule" timeZone="GMT+2">
@@ -65,38 +62,5 @@
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
-
-	<script type="text/javascript">
-		PrimeFaces.locales['de'] = {
-			closeText : 'schließen',
-			prevText : 'geri',
-			nextText : 'ileri',
-			currentText : 'bugün',
-			monthNames : [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-					'Juli', 'August', 'September', 'Oktober', 'November',
-					'Dezember' ],
-			monthNamesShort : [ 'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
-					'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez' ],
-			dayNames : [ 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',
-					'Freitag', 'Samstag', 'Sonntag' ],
-			dayNamesShort : [ 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So' ],
-			dayNamesMin : [ 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So' ],
-			weekHeader : 'Hf',
-			firstDay : 1,
-			isRTL : false,
-			showMonthAfterYear : false,
-			yearSuffix : '',
-			month : 'Monat',
-			week : 'Woche',
-			day : 'Tag',
-			allDayText : 'Tüm Gün'
-		};
-	</script>
-	<style type="text/css">
-.value {
-	width: 1000px;
-}
-</style>
-
 </body>
 </html>

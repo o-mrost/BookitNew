@@ -22,30 +22,35 @@
 				<p:growl id="messages" />
 
 				<p:menubar>
+
 					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-						<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
+						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
 							<p:menuitem value="#{res.keyServiceListe}" url="#" />
 							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
+
 						</p:submenu>
 						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
 						<p:separator />
 					</p:submenu>
 
+
 					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
 						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
-						<p:menuitem value="#{res.keyAktuelleTermine}" url="#" />
+						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
+
 					</p:submenu>
 
 					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
 						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
 						<p:submenu label="#{res.keyKontaktdetails}">
-						</p:submenu>
-					</p:submenu>
+					</p:submenu> 
+					</p:submenu> 
 
 					<f:facet name="options">
 						<p:inputText style="margin-right:12px" placeholder="Suchen" />
 					</f:facet>
 				</p:menubar>
+
 			</h:form>
 
 
@@ -56,7 +61,7 @@
 
 				<p:menubar>
 					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-						<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
+						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact"> 
 							<p:menuitem value="#{res.keyServiceListe}" url="#" />
 							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
 						</p:submenu>
@@ -66,7 +71,8 @@
 
 					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
 						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
-						<p:menuitem value="#{res.keyAktuelleTermine}" url="#" />
+						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
+
 					</p:submenu>
 
 					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
@@ -145,8 +151,8 @@
 	<p />
 	the user sees
 	<p />
-	<p />
-	<p />
+			<p />
+			<p />
 			<!-- ================= Login page ================= -->
 
 			<h:panelGroup rendered="#{!lb.anybodyLoggedIn}">
@@ -176,6 +182,9 @@
 			<h:panelGrid columns="1" rendered="#{lb.anybodyLoggedIn}">
 				
 				Angemeldet als <strong>#{lb.username}</strong>
+
+				<p />
+				Hello, #{lb.name}
 				<p />
 
 				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}" />

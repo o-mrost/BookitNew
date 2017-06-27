@@ -52,10 +52,10 @@
       <value>jdbc:mysql://localhost/bookit</value>
     </managed-property>
     
-    <managed-property>
-      <property-name>logfile</property-name>
-      <value>/Users/olgamrost/Desktop/browse.log</value>
-    </managed-property>    
+<!--     <managed-property> -->
+<!--       <property-name>logfile</property-name> -->
+<!--       <value>/Users/olgamrost/Desktop/browse.log</value> -->
+<!--     </managed-property>     -->
   </managed-bean>
     
 </faces-config>

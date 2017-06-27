@@ -29,16 +29,19 @@
 				<p:growl id="messages" />
 
 				<p:menubar>
-					<p:submenu label="#{res.keyTermin}"  icon="ui-icon-contact">
+					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
 						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
 							<p:menuitem value="#{res.keyServiceListe}" url="#" />
-							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
+							<p:menuitem value="#{res.keyServiceSuche}" url="#"
+								icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil"
+							url="#" />
 						<p:separator />
 					</p:submenu>
 
-					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
+					<p:submenu label="#{res.keyBuchungsübersicht}"
+						icon="ui-icon-pencil">
 						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
 						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
 					</p:submenu>
@@ -67,6 +70,34 @@
 				<p>
 					<h:commandButton value="Zurück" action="loginPage.xhtml" />
 				</p>
+
+
+				<p />
+				<h:outputLabel value="Wert auswählen" for="id_somDemo" />&#160;
+  					<h:selectOneMenu id="id_somDemo" label="Combodemo"
+					onchange="form.submit()" value="#{ub.auswahl}"
+					valueChangeListener="#{ub.cbxChangeListener}"
+					binding="#{ub.cbxSkin}">
+					<f:selectItems value="#{ub.options}" />
+				</h:selectOneMenu>
+				<h:outputText value="Sie haben #{ub.auswahl} gewählt" />
+				<p />
+				<hr />
+				<p />
+				<h:outputLabel
+					value="Hier ein Beispiel mit Listbox (Mehrfachauswahl):"
+					for="id_smlDemo" />&#160;
+  					<h:selectManyListbox id="id_smlDemo" size="3"
+					label="Listenfeld mit Mehrfachauswahl" autoSubmit="false"
+					value="#{ub.listAuswahlArray}"
+					valueChangeListener="#{ub.lstChangeListener}">
+					<f:selectItems value="#{ub.options}" />
+				</h:selectManyListbox>
+				<p />Selektierte Listenelemente: #{ub.listAuswahlString}
+				
+
+
+
 			</h:form>
 
 		</ui:define>

@@ -23,7 +23,7 @@
 
 			<!-- ========================== Login =============================== -->
 
-			<h:panelGroup rendered="#{!lbn.loggedIn}">
+			<h:panelGroup rendered="#{!lbn.userLoggedIn and !lbn.adminLoggedIn}">
 
 				<p:menubar>
 					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
@@ -64,11 +64,14 @@
 
 					<h:outputText value="Anmelden als" />
 					<strong>user/user</strong> oder
- 					<strong>admin/admin</strong>
+ 					<strong>user1/user1</strong> oder
+ 					<strong>HairCut/HairCut mit dem Checkbox</strong>
 					<p />
 
+			 <p:selectBooleanCheckbox value="#{lbn.adminLogin}" />
+
 					<f:facet name="footer">
-						<h:commandButton value="Login" action="#{lbn.actLogin}" />
+						<h:commandButton value="Login" action="#{lbn.actLoginNew}" />
 					</f:facet>
 				</h:panelGrid>
 			</h:panelGroup>
@@ -90,6 +93,7 @@
 			<h:panelGrid columns="1" rendered="#{lbn.loggedIn}">
 				
  				Angemeldet als <strong>#{lbn.kennung}</strong>
+ 				
 				<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}" />
 			</h:panelGrid>
 

@@ -57,7 +57,7 @@ public class User {
 	  
 	  public void setListAuswahlArray( String[] s ) 
 	  { 
-	    System.out.println( "setListAuswahl..." );
+	    // System.out.println( "setListAuswahl..." );
 	    listAuswahlArray = s;
 	    
 	    for( int i = 0; i < listAuswahlArray.length; i++ )
@@ -86,7 +86,7 @@ public class User {
 	  
 	  public void lstChangeListener(ValueChangeEvent vce) 
 	  {
-	    System.out.println( "lstChangeListener..." );
+	    // System.out.println( "lstChangeListener..." );
 	    String[] values = (String[]) vce.getNewValue();
 	    
 	    listAuswahlString = "";
@@ -103,15 +103,15 @@ public class User {
 
 	  /*---------------------------------------------------------------------------------*/
 	  
-	  //Initialisierung der Combobox mit gewünschter initialer Skin
+	  //Initialisierung der Combobox mit gewï¿½nschter initialer Skin
 	  public HtmlSelectOneMenu getCbxSkin() {
 	    
 	    final String SKIN = "Value_2"; //
 	    
 	    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().
 	                                                      put( "skinFamily", SKIN );     
-	    System.out.println ( "skinFamily: " + FacesContext.getCurrentInstance().
-	                   getExternalContext().getSessionMap().get( "skinFamily" ) );
+//	    System.out.println ( "skinFamily: " + FacesContext.getCurrentInstance().
+//	                   getExternalContext().getSessionMap().get( "skinFamily" ) );
 	    
 	    cbxSkin.setValue( SKIN );
 	    

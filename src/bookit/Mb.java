@@ -14,7 +14,7 @@ import javax.faces.event.ActionEvent;
  * @author Wolfgang Lang
  * @version 1.0.0, 2014-04-28
  */
-@ManagedBean(name = "mb")
+@ManagedBean(name = "lbn")
 @SessionScoped
 
 public class Mb {

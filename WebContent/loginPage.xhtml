@@ -20,23 +20,26 @@
 		<ui:define name="title">Login</ui:define>
 
 		<ui:define name="content">
-	
+
 			<!-- ========================== Login =============================== -->
-			<h:panelGroup rendered="#{!mb.loggedIn}">
+
+			<h:panelGroup rendered="#{!lbn.loggedIn}">
 
 				<p:menubar>
-					<p:submenu label="Termin" icon="ui-icon-contact">
-						<p:submenu label="Termin buchen" icon="ui-icon-contact">
-							<p:menuitem value="Liste der Services" url="#" />
-							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
+						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
+							<p:menuitem value="#{res.keyServiceListe}" url="#" />
+							<p:menuitem value="#{res.keyServiceSuche}" url="#"
+								icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil"
+							url="#" />
 						<p:separator />
 					</p:submenu>
 
-					<p:submenu label="Kontakt" icon="ui-icon-help">
-						<p:menuitem value="Anfahrt" url="#" />
-						<p:submenu label="Kontaktdetails">
+					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
+						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
+						<p:submenu label="#{res.keyKontaktdetails}">
 						</p:submenu>
 					</p:submenu>
 
@@ -45,17 +48,16 @@
 					</f:facet>
 				</p:menubar>
 
-
 				<h:panelGrid columns="2"
 					style="border: solid #336699 1px; background-color: #f0f0f0">
-					<f:facet name="footer">
-						<h:commandButton value="Login" action="#{mb.actLogin}" />
-					</f:facet>
- 			Kennung
-			<h:inputText titel="Kennung" required="true" value="#{mb.kennung}"
+					
+					
+ 			#{res.keyHeader}
+			<h:inputText titel="Kennung" required="true" value="#{lbn.kennung}"
 						requiredMessage="Kennung fehlt" size="40" />
- 			Passwort
- 			<h:inputSecret titel="Passwort" value="#{mb.pw}" required="true"
+ 			
+ 			#{res.keyHeaderPass}
+ 			<h:inputSecret titel="Passwort" value="#{lbn.pw}" required="true"
 						requiredMessage="Passwort fehlt" size="40">
 						<f:validateLength minimum="4" />
 					</h:inputSecret>
@@ -64,15 +66,31 @@
 					<strong>user/user</strong> oder
  					<strong>admin/admin</strong>
 					<p />
+
+					<f:facet name="footer">
+						<h:commandButton value="Login" action="#{lbn.actLogin}" />
+					</f:facet>
 				</h:panelGrid>
 			</h:panelGroup>
 
+
+			<!-- ================= Switch languages button ================= -->
+
+			<p:menuButton value="Options" style="float: right;">
+				<p:menuitem value="Deutsch" icon="flagge_de" immediate="true"
+					ajax="false" actionListener="#{lb.languageDE}" />
+
+				<p:menuitem value="English" icon="flagge_en" immediate="true"
+					ajax="false" actionListener="#{lb.languageEN}" />
+
+			</p:menuButton>
+
 			<!-- ====================== Logout und Kennung ======================== -->
-			<h:panelGrid columns="1" rendered="#{mb.loggedIn}">
+
+			<h:panelGrid columns="1" rendered="#{lbn.loggedIn}">
 				
-				
- 				Angemeldet als <strong>#{mb.kennung}</strong>
-				<h:commandButton value="Logout" actionListener="#{mb.aclLogout}" />
+ 				Angemeldet als <strong>#{lbn.kennung}</strong>
+				<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}" />
 			</h:panelGrid>
 
 		</ui:define>

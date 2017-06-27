@@ -25,27 +25,27 @@
 
 			<!--  ===================================Login menu user===============================   -->
 
-			<h:form rendered="#{mb.loggedIn}">
+			<h:form rendered="#{lbn.loggedIn}">
 				<p:growl id="messages" />
 
 				<p:menubar>
-					<p:submenu label="Termin" icon="ui-icon-contact">
-						<p:submenu label="Termin buchen" icon="ui-icon-contact">
-							<p:menuitem value="Liste der Services" url="#" />
-							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+					<p:submenu label="#{res.keyTermin}"  icon="ui-icon-contact">
+						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
+							<p:menuitem value="#{res.keyServiceListe}" url="#" />
+							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
 						<p:separator />
 					</p:submenu>
 
-					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
-						<p:menuitem value="Mein Account" url="#" />
-						<p:menuitem value="Aktuelle Termine" url="calendar.xhtml" />
+					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
+						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
+						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
 					</p:submenu>
 
-					<p:submenu label="Kontakt" icon="ui-icon-help">
-						<p:menuitem value="Anfahrt" url="#" />
-						<p:submenu label="Kontaktdetails">
+					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
+						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
+						<p:submenu label="#{res.keyKontaktdetails}">
 						</p:submenu>
 					</p:submenu>
 
@@ -59,7 +59,7 @@
 				<h3>Hallo user</h3>
 				<p>
 					Heute ist
-					<h:outputText value="#{mb.date}">
+					<h:outputText value="#{lbn.date}">
 						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
 					</h:outputText>
 				</p>

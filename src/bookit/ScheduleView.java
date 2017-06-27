@@ -127,7 +127,7 @@ public class ScheduleView implements Serializable {
 	@PostConstruct
 	public void init() {
 		eventModel = new DefaultScheduleModel();
-		//connectToDb();
+		connectToDb();
 	}
 
 	private void connectToDb() {

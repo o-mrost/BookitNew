@@ -16,42 +16,36 @@
 		<ui:define name="title">Login</ui:define>
 		<ui:define name="content">
 
-
 			<!-- ================= User view ================= -->
 
 			<h:form rendered="#{lb.userLoggedIn}">
 				<p:growl id="messages" />
 
 				<p:menubar>
-
-					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact">
-							<p:menuitem value="#{res.keyServiceListe}" url="#" />
-							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
-
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Se	rvices" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
 						<p:separator />
 					</p:submenu>
 
-
-					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
-						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
-						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
-
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="#" />
 					</p:submenu>
 
-					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
-						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
-						<p:submenu label="#{res.keyKontaktdetails}">
-					</p:submenu> 
-					</p:submenu> 
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
 
 					<f:facet name="options">
 						<p:inputText style="margin-right:12px" placeholder="Suchen" />
 					</f:facet>
 				</p:menubar>
-
 			</h:form>
 
 
@@ -61,24 +55,23 @@
 				<p:growl id="messages" />
 
 				<p:menubar>
-					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-						<p:submenu label="#{res.keyTerminBuchen}" icon="ui-icon-contact"> 
-							<p:menuitem value="#{res.keyServiceListe}" url="#" />
-							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
 						<p:separator />
 					</p:submenu>
 
-					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
-						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
-						<p:menuitem value="#{res.keyAktuelleTermine}" url="calendar.xhtml" />
-
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="#" />
 					</p:submenu>
 
-					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
-						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
-						<p:submenu label="#{res.keyKontaktdetails}">
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
 						</p:submenu>
 					</p:submenu>
 
@@ -94,23 +87,18 @@
 				<p:growl id="messages" />
 
 				<p:menubar>
-					<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-						<p:submenu label="#{res.keyTermin}" icon="ui-icon-contact">
-							<p:menuitem value="#{res.keyServiceListe}" url="#" />
-							<p:menuitem value="#{res.keyServiceSuche}" url="#" icon="ui-icon-search" />
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
 						</p:submenu>
-						<p:menuitem value="#{res.keyTerminÄndern}" icon="ui-icon-pencil" url="#" />
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
 						<p:separator />
 					</p:submenu>
 
-					<p:submenu label="#{res.keyBuchungsübersicht}" icon="ui-icon-pencil">
-						<p:menuitem value="#{res.keyMeinAccount}" url="#" />
-						<p:menuitem value="#{res.keyAktuelleTermine}" url="#" />
-					</p:submenu>
-
-					<p:submenu label="#{res.keyKontakt}" icon="ui-icon-help">
-						<p:menuitem value="#{res.keyAnfahrt}" url="#" />
-						<p:submenu label="#{res.keyKontaktdetails}">
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
 						</p:submenu>
 					</p:submenu>
 
@@ -118,7 +106,6 @@
 						<p:inputText style="margin-right:12px" placeholder="Suchen" />
 					</f:facet>
 				</p:menubar>
-
 			</h:form>
 
 			<!-- ================= Switch languages button ================= -->
@@ -131,11 +118,33 @@
 					ajax="false" actionListener="#{lb.languageEN}" />
 
 			</p:menuButton>
+			
+			
 
-
+	Add here
+	<p />
+	some nice 
+	<p />
+	text and 
+	<p />
+	may be
+	<p /> 
+	several
+	<p />
+	pictures
+	
+	<p />
+	so that login page 
+	<p />
+	is not the first what 
+	<p />
+	the user sees
+	<p />
+	<p />
+	<p />
 			<!-- ================= Login page ================= -->
 
-			<h:panelGroup rendered="#{!lb.userLoggedIn and !lb.adminLoggedIn}">
+			<h:panelGroup rendered="#{!lb.anybodyLoggedIn}">
 
 				<h:panelGrid columns="2"
 					style="border: solid #336699 5px; background-color: #f0f0f0">
@@ -150,8 +159,6 @@
 						<f:validateLength minimum="4" />
 					</h:inputSecret>
 
-					<p:selectBooleanCheckbox value="#{lb.adminLogin}" />
-
 					<f:facet name="footer">
 						<h:commandButton value="Login" actionListener="#{lb.actLogin}" />
 					</f:facet>
@@ -161,11 +168,10 @@
 
 			<!-- =================  Logout und Kennung ================= -->
 
-			<h:panelGrid columns="1" rendered="#{lb.userLoggedIn or lb.adminLoggedIn}">
+			<h:panelGrid columns="1" rendered="#{lb.anybodyLoggedIn}">
 				
 				Angemeldet als <strong>#{lb.username}</strong>
-
-				<p />Hello, #{lb.name} <p />
+				<p />
 
 				<h:commandButton value="Logout" actionListener="#{lb.aclLogout}" />
 

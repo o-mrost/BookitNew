@@ -5,13 +5,13 @@
 *******************************************************************************/
 
 .flagge_de {
-background: url( img/flagge_de_30_19.jpg ) no-repeat !important; 
+background: url(img/flagge_de_10.jpg) no-repeat !important; 
 height: 19px;
 width:  30px;
 }
 
 .flagge_en {
-background: url( img/flagge_en_30_19.jpg ) no-repeat !important; 
+background: url(img/flagge_en_20.jpg) no-repeat !important; 
 height: 19px;
 width:  30px;
 }

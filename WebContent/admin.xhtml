@@ -23,6 +23,34 @@ client_hallo.xhtml - Zweite Client Seite, die nach dem Click auf den Button
 			<h:form rendered="#{lb.adminLoggedIn}">
 				<p:growl id="msgs" showDetail="true" />
 
+				Hallo Admin!
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="calendar.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+					</f:facet>
+				</p:menubar>
+
+
 				<p:dashboard id="board" model="#{db.model}">
 					<p:ajax event="reorder" listener="#{db.handleReorder}"
 						update="msgs" />

@@ -34,6 +34,7 @@ public class Login {
 	private String name = "";
 	private String sqlUsername = "";
 	private String sqlPassword = "";
+	private boolean adminLogin = false;
 
 	/*---------------------------------------------------------------------------------*/
 
@@ -48,6 +49,14 @@ public class Login {
 	/*---------------------------------------------------------------------------------*/
 
 	// getter and setters for input and output fields
+
+	public boolean isAdminLogin() {
+		return adminLogin;
+	}
+
+	public void setAdminLogin(boolean adminLogin) {
+		this.adminLogin = adminLogin;
+	}
 
 	public String getSqlUsername() {
 		return sqlUsername;
@@ -117,28 +126,35 @@ public class Login {
 
 		String sOutcome = null;
 		System.out.println("actLogin()...");
+		System.out.println("admin login " + adminLogin);
 
 		username = username.trim();
 		password = password.trim();
 
+		String select;
+		String selectUser = "SELECT Customer_Lastname, Customer_Firstname,"
+				+ " Customer_Login, Customer_Passwort FROM customer WHERE customer_login = ?";
+
+		String selectAdmin = "SELECT Company_Name, Company_Login, Company_Passwort FROM company "
+				+ "WHERE Company_Login = ?";
+
+		if (adminLogin) {
+			select = selectAdmin;
+		} else
+			select = selectUser;
+
 		if (util != null)
 			con = util.getCon();
 		if (con != null) {
+
 			try {
-
-				String select = "SELECT Customer_Lastname, Customer_Firstname,"
-						+ " Customer_Login, Customer_Passwort FROM customer WHERE customer_login = ?";
-
 				PreparedStatement ps = con.prepareStatement(select);
-
 				ps.setString(1, username);
-
 				System.out.println("prepared statement: " + ps.toString());
-
 				rs = ps.executeQuery();
 
 				if (rs.first())
-					showData();
+					showData(adminLogin);
 
 			} catch (Exception ex) {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -161,46 +177,69 @@ public class Login {
 		System.out.println("sqlusername: " + sqlUsername + ", sql password: " + sqlPassword);
 		System.out.println("++++++++++++++++++++++++++++++++");
 
-		if (username.equalsIgnoreCase(sqlUsername) && password.equals(sqlPassword)) {
-
-			// TODO database query for password for the user
-
-			sOutcome = "user";
-
-			// System.out.println("verschlüsseltes passwort: " + password);
-			userLoggedIn = true;
-			adminLoggedIn = false;
-			System.out.println("USER EINGELOGGT: " + userLoggedIn);
-			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
-			anybodyLoggedIn = true;
-		}
-
-		else if (username.equalsIgnoreCase("admin") && password.equals("admin"))
-
-		{
+		if (adminLogin) {
 			sOutcome = "admin";
 			adminLoggedIn = true;
 			userLoggedIn = false;
-			System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
-			System.out.println("USER EINGELOGGT: " + userLoggedIn);
+		} else {
+			sOutcome = "user";
+			userLoggedIn = true;
+			adminLoggedIn = false;
+
+		}
+		adminLoggedIn = adminLogin;
+
+		if (username.equalsIgnoreCase(sqlUsername) && password.equals(sqlPassword)) {
+
+			System.out.println("login successful");
+
+			System.out.println("#########    outcome: " + sOutcome);
+
+			// sOutcome = "user";
+			// userLoggedIn = true;
+			// adminLoggedIn = false;
+			// System.out.println("USER EINGELOGGT: " + userLoggedIn);
+			// System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
 			anybodyLoggedIn = true;
-		} else
+		}
+
+		// else if (username.equalsIgnoreCase("admin") &&
+		// password.equals("admin"))
+		//
+		// {
+		// sOutcome = "admin";
+		// adminLoggedIn = true;
+		// userLoggedIn = false;
+		// System.out.println("ADMIN EINGELOGGT: " + adminLoggedIn);
+		// System.out.println("USER EINGELOGGT: " + userLoggedIn);
+		// anybodyLoggedIn = true;
+		// }
+
+		else
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Fehler",
 					"Kennung oder PW falsch(user/user oder admin/admin)"));
 
 		return sOutcome;
 	}
 
-	private void showData() throws SQLException {
+	private void showData(boolean admin) throws SQLException {
 
-		setName(rs.getString("customer_firstname") + " " + rs.getString("customer_lastname"));
-		setSqlPassword(rs.getString("customer_passwort"));
-		setSqlUsername(rs.getString("customer_login"));
+		if (admin) {
+			setName(rs.getString("company_name"));
+			setSqlPassword(rs.getString("company_passwort"));
+			setSqlUsername(rs.getString("company_login"));
+
+		} else {
+
+			setName(rs.getString("customer_firstname") + " " + rs.getString("customer_lastname"));
+			setSqlPassword(rs.getString("customer_passwort"));
+			setSqlUsername(rs.getString("customer_login"));
+		}
 
 		System.out.println("logged as: " + name + ", pass: " + sqlPassword + ", name: " + sqlUsername);
 
 	}
-	
+
 	/*---------------------------------------------------------------------------------*/
 
 	// listen to button and change boolean if clicked

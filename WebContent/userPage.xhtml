@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ user.xhtml - Client Seite user
+ ============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+
+	<ui:composition template="/masterLayout.xhtml">
+
+		<ui:define name="title">Hallo</ui:define>
+
+		<ui:define name="content">
+
+			<h:form rendered="#{mb.loggedIn}">
+				<p:growl id="messages" />
+
+				<p:menubar>
+					<p:submenu label="Termin" icon="ui-icon-contact">
+						<p:submenu label="Termin buchen" icon="ui-icon-contact">
+							<p:menuitem value="Liste der Services" url="#" />
+							<p:menuitem value="Service suchen" url="#" icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Termin ändern" icon="ui-icon-pencil" url="#" />
+						<p:separator />
+					</p:submenu>
+
+					<p:submenu label="Buchungsübersicht" icon="ui-icon-pencil">
+						<p:menuitem value="Mein Account" url="#" />
+						<p:menuitem value="Aktuelle Termine" url="#" />
+					</p:submenu>
+
+					<p:submenu label="Kontakt" icon="ui-icon-help">
+						<p:menuitem value="Anfahrt" url="#" />
+						<p:submenu label="Kontaktdetails">
+						</p:submenu>
+					</p:submenu>
+
+					<f:facet name="options">
+						<p:inputText style="margin-right:12px" placeholder="Suchen" />
+						<p:commandButton type="button" value="Logout"
+							icon="ui-icon-extlink" />
+					</f:facet>
+				</p:menubar>
+
+				<h3>Hallo user</h3>
+				<p>
+					Heute ist
+					<h:outputText value="#{mb.date}">
+						<f:convertDateTime locale="de_DE" dateStyle="full" type="both" />
+					</h:outputText>
+				</p>
+
+				<p>
+					<h:commandButton value="Zurück" action="loginPage.xhtml" />
+				</p>
+				
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

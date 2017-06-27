@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE html>
+
+<!-- ===========================================================================
+ login.xhtml - Startseite für Navigationsbeispiel
+ ============================================================================ -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition template="/masterLayout.xhtml">
+
+		<ui:define name="title">Login</ui:define>
+
+		<ui:define name="content">
+		
+		
+		new 
+			<p />
+		login 
+			<p />
+		page
+
+			<!-- ========================== Login =============================== -->
+
+
+			
+
+
+
+			<h:panelGroup rendered="#{!mb.loggedIn}">
+				<h:panelGrid columns="2"
+					style="border: solid #336699 5px; background-color: #f0f0f0">
+					<f:facet name="footer">
+						<h:commandButton value="Login" action="#{mb.actLogin}" />
+					</f:facet>
+ 			Kennung
+			<h:inputText titel="Kennung" required="true" value="#{mb.kennung}"
+						requiredMessage="Kennung fehlt" size="40" />
+ 			Passwort
+ 			<h:inputSecret titel="Passwort" value="#{mb.pw}" required="true"
+						requiredMessage="Passwort fehlt" size="40">
+						<f:validateLength minimum="4" />
+					</h:inputSecret>
+
+					<h:outputText value="Anmelden als" />
+					<strong>user/user</strong> oder
+ 					<strong>admin/admin</strong>
+					<p />
+				</h:panelGrid>
+			</h:panelGroup>
+
+			<!-- ====================== Logout und Kennung ======================== -->
+			<h:panelGrid columns="1" rendered="#{mb.loggedIn}"
+				style="float: right;">
+ 				Angemeldet als <strong>#{mb.kennung}</strong>
+				<h:commandButton value="Logout" actionListener="#{mb.aclLogout}" />
+			</h:panelGrid>
+
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

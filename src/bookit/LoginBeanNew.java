@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -235,6 +236,16 @@ public class LoginBeanNew {
 		loggedIn = false;
 		adminLoggedIn = false;
 		userLoggedIn = false;
+	}
+	
+	public void languageDE(ActionEvent ae) {
+		System.out.println("deutsch");
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.GERMAN);
+	}
+
+	public void languageEN(ActionEvent ae) {
+		System.out.println("english");
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(Locale.ENGLISH);
 	}
 
 }

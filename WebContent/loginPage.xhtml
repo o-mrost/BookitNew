@@ -21,7 +21,7 @@
 
 		<ui:define name="content">
 
-			<!-- ========================== Login =============================== -->
+			<!-- ========================== Menu Logged out =============================== -->
 
 			<h:panelGroup rendered="#{!lbn.userLoggedIn and !lbn.adminLoggedIn}">
 
@@ -48,16 +48,29 @@
 					</f:facet>
 				</p:menubar>
 
+				<h:form>
+					<p:outputPanel deferred="true">
+						<h3>Willkommen bei dem Frisör Ihres Vertrauens!</h3>
+						<p>Wenn Sie auf der Suche nach einem einmaligen Haarschnitt sind, sind sie hier genau richtig!<br/>
+						   Um einen Termin zu buchen loggen Sie sich bitte ein oder registrieren Sie sich.</p>
+					</p:outputPanel>
+
+					<div style="height: 10px"></div>
+
+				</h:form>
+
+				<!-- ========================== Login Grid =============================== -->
+
 				<h:panelGrid columns="2"
 					style="border: solid #336699 1px; background-color: #f0f0f0">
 					
 					
- 			#{res.keyHeader}
-			<h:inputText titel="Kennung" required="true" value="#{lbn.kennung}"
+ 					#{res.keyHeader}
+					<h:inputText titel="Kennung" required="true" value="#{lbn.kennung}"
 						requiredMessage="Kennung fehlt" size="40" />
  			
- 			#{res.keyHeaderPass}
- 			<h:inputSecret titel="Passwort" value="#{lbn.pw}" required="true"
+ 					#{res.keyHeaderPass}
+ 					<h:inputSecret titel="Passwort" value="#{lbn.pw}" required="true"
 						requiredMessage="Passwort fehlt" size="40">
 						<f:validateLength minimum="4" />
 					</h:inputSecret>
@@ -68,7 +81,7 @@
  					<strong>HairCut/HairCut mit dem Checkbox</strong>
 					<p />
 
-			 <p:selectBooleanCheckbox value="#{lbn.adminLogin}" />
+					<p:selectBooleanCheckbox value="#{lbn.adminLogin}" />
 
 					<f:facet name="footer">
 						<h:commandButton value="Login" action="#{lbn.actLoginNew}" />
@@ -93,7 +106,7 @@
 			<h:panelGrid columns="1" rendered="#{lbn.loggedIn}">
 				
  				Angemeldet als <strong>#{lbn.kennung}</strong>
- 				
+
 				<h:commandButton value="Logout" actionListener="#{lbn.aclLogout}" />
 			</h:panelGrid>
 

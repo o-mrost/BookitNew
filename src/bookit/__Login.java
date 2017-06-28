@@ -19,7 +19,7 @@ import java.util.Locale;
 
 @ManagedBean(name = "lb")
 @RequestScoped
-public class Login {
+public class __Login {
 
 	private Util util = new Util();
 	private Connection con = null;
@@ -39,7 +39,7 @@ public class Login {
 	/*---------------------------------------------------------------------------------*/
 
 	// constructor login
-	public Login() {
+	public __Login() {
 		System.out.println("MyBean.<init>...");
 		System.out.println("User logged in: " + userLoggedIn);
 		System.out.println("Admin logged in: " + adminLoggedIn);

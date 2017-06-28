@@ -17,7 +17,7 @@ import javax.faces.event.ActionEvent;
 
 @ManagedBean(name = "mb_browse")
 @SessionScoped
-public class MbBrowse implements Serializable {
+public class __MbBrowse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -122,7 +122,7 @@ public class MbBrowse implements Serializable {
 
 	/*--------------------------------------------------------------------------*/
 
-	public MbBrowse() {
+	public __MbBrowse() {
 	}
 
 	public boolean getPrevButtonDisabled() {
